@@ -2,4 +2,7 @@ module github.com/kuochaoyi/ginpgx
 
 go 1.14
 
-require github.com/gin-gonic/gin v1.5.0
+require (
+	github.com/gin-gonic/gin v1.5.0
+	github.com/jackc/pgx/v4 v4.4.1
+)
