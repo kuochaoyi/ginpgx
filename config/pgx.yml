@@ -1,0 +1,23 @@
+dev:
+  hostname: localhost
+  port:     5432
+  database: test
+  username: root
+  password: 123456
+  sslmode: disable
+
+test:
+  hostname: localhost-ttt
+  port:     5432
+  database: test
+  username: root
+  password: a1937258
+  sslmode: disable
+
+prod:
+  hostname: localhost-rrr
+  port:     5432
+  database: test
+  username: root
+  password: a1937258
+  sslmode: enable
