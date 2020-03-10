@@ -1,0 +1,4 @@
+{
+  "*.go": {"alternate": "testing/{}.go"},
+  "testing/*.go": {"altername": "{}.go"}
+}
