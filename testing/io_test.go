@@ -1,3 +1,4 @@
+// command: go test -v testing/io_test.go
 package testing
 
 import (
@@ -7,64 +8,39 @@ import (
 	"path"
 	"testing"
 
-	"github.com/kuochaoyi/ginpgx/common"
 	"gopkg.in/yaml.v3"
+
+	"github.com/kuochaoyi/ginpgx/common"
 )
 
 func TestGetYAML(t *testing.T) {
-	// t.Fatal("not implemented")
-	// type DatabaseInfo struct {
-	// 	Dev  map[string]string
-	// 	Test map[string]string
-	// 	Prod map[string]string
-	// }
-	// f := "config/pgx.yml"
-	// fileByte := common.GetFileByte(f)
-	// var di DatabaseInfo
-	// yaml.Unmarshal(fileByte, &di)
-	// for k, v := range di.Dev {
-	// 	time.Sleep(300 * time.Millisecond)
-	// 	fmt.Println(k, v)
-	// 	t.Log("t.Logf", "Nothing")
-	// }
 
-	type P struct {
-		Msg map[string]string
-	}
-
-	var d P
+	var msg common.Message
 	dir, _ := os.Getwd()
 	fp := path.Join(dir, "../common/message.yml")
 	fmt.Println(fp)
 	fileData, _ := ioutil.ReadFile(fp)
 	fmt.Println(fileData)
-	yaml.Unmarshal(fileData, &d)
-	fmt.Println(d)
+	yaml.Unmarshal(fileData, &msg)
+	fmt.Println(msg)
 
-	if b, ok := d.Msg["1000"]; ok {
+	if b, ok := msg.Msg[10000]; ok {
 		t.Logf(b)
 	} else {
 		t.Logf("nil")
 	}
-	// }
 }
 
-func TestGetFileByte(t *testing.T) {
-	// t.Fatal("not implemented")
-	// type DatabaseInfo struct {
-	// 	Dev  map[string]string
-	// 	Test map[string]string
-	// 	Prod map[string]string
-	// }
-	// f := "config/pgx.yml"
-	// fileByte := common.GetFileByte(f)
-	// var di DatabaseInfo
-	// yaml.Unmarshal(fileByte, &di)
-	// for k, v := range di.Dev {
-	// 	time.Sleep(300 * time.Millisecond)
-	// 	fmt.Println(k, v)
-	// 	t.Log("t.Logf", "Nothing")
-	// }
+/*
+func TestGetFileToByte(t *testing.T) {
+	t.Fatal("not implemented")
+	f := "config/pgx.yml"
+	yaml.Unmarshal(fileByte, &di)
+	for k, v := range di.Dev {
+		time.Sleep(300 * time.Millisecond)
+		fmt.Println(k, v)
+		t.Log("t.Logf", "Nothing")
+	}
 
 	type P struct {
 		Msg map[string]string
@@ -72,7 +48,7 @@ func TestGetFileByte(t *testing.T) {
 
 	var a P
 
-	bb := common.GetFileByte("../common/message.yml")
+	bb := common.GetFileToByte("../common/message.yml")
 
 	fmt.Println(bb)
 	yaml.Unmarshal(bb, &a)
@@ -86,4 +62,13 @@ func TestGetFileByte(t *testing.T) {
 	} else {
 		t.Logf("nil")
 	}
+}
+*/
+
+func TestLoadDBinfo(t *testing.T) {
+
+	var dbinfo common.DBinfo
+	filebyte := common.GetFileToByte("../config/pgx.yml")
+	yaml.Unmarshal(filebyte, &dbinfo)
+	fmt.Println(dbinfo)
 }

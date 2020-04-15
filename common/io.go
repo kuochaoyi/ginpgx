@@ -6,10 +6,9 @@ import (
 	"path"
 )
 
-func GetFileByte(filePath string) []byte {
+func GetFileToByte(filePath string) []byte {
 	dir, _ := os.Getwd()
-	fp := path.Join(dir, filePath)
-	fileByte, _ := ioutil.ReadFile(fp)
-	// yaml.Unmarshal(fileData, d)
+	fullPath := path.Join(dir, filePath)
+	fileByte, _ := ioutil.ReadFile(fullPath)
 	return fileByte
 }
